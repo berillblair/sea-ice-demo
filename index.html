@@ -5,6 +5,12 @@
     <title>My Rust + Webpack project!</title>
 
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+      * {
+        font-family: "Open Sans";
+      }
+
       .vert {
         display: flex;
         flex-flow: column;
@@ -22,17 +28,39 @@
 
       #canvas-thing {
         width: 770px;
+        border-right: solid 1px black;
+      }
+
+      .centered {
+        justify-content: center;
+      }
+
+      .centered .horiz {
+        width: 100%;
+      }
+
+      .centered .vert {
+        height: 100%;
+      }
+
+      #buttons {
+        justify-content: space-between;
+        width: 70vw;
+      }
+
+      #buttons > * {
+        width: 26%;
       }
     </style>
   </head>
-  <body style="margin: 0; background: #d7d7d7; display: inline-block;">
+  <body style="margin: 0; display: inline-block;">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
 
 
     <div class="horiz">
-      <div class="horiz" id="canvas-thing">
-        <canvas id="canvas" width="1326" height="1034"></canvas>
-        <h2 id="season" style="color: black;"></h2>
+      <div class="vert centered" id="canvas-thing">
+        <div class="centered horiz"><canvas id="canvas" width="1326" height="1034"></canvas></div>
+        <div class="centered horiz"><h2 id="season" style="color: black;"></h2></div>
       </div>
 
 
@@ -49,53 +77,52 @@
       </div>
     </div>
 
-    <label for="release-year" id="release-year-label">Release year</label>
-    <input type="range" value="2022" min="2022" max="2035" id="release-year" />
-    <label id="speed-label" for="speed">Model Speed</label>
-    <input type="range" value="0" min="1" max="300" id="speed" />
-    <label id="informational-environment-reliability-label" for="informational-environment-reliability">Reliability of informational environment</label>
-    <input type="range" value="6" min="1" max="10" id="informational-environment-reliability" />
-    <label id="provider-trust-label" for="provider-trust">Provider Trust</label>
-    <input type="range" value="5" min="1" max="10" id="provider-trust" />
-    <label id="new-product-quality-label" for="new-product-quality">Quality of new product</label>
-    <input type="range" value="0.5" min="0.1" step="0.1" max="1" id="new-product-quality" />
-    <label id="prop-he-label" for="prop-he">Proportion Highly Experienced</label>
-    <input type="range" value="0.40" min="0" step="0.01" max="1" id="prop-he" />
+    <div class="horiz centered">
+      <div class="horiz" id="buttons">
+        <div class="centered vert">
+          <label for="release-year" id="release-year-label">Release year</label>
+          <input type="range" value="2022" min="2022" max="2035" id="release-year" />
+          <label id="speed-label" for="speed">Model Speed</label>
+          <input type="range" value="0" min="1" max="300" id="speed" />
+          <label id="informational-environment-reliability-label" for="informational-environment-reliability">Reliability of informational environment</label>
+          <input type="range" value="6" min="1" max="10" id="informational-environment-reliability" />
+          <label id="provider-trust-label" for="provider-trust">Provider Trust</label>
+          <input type="range" value="5" min="1" max="10" id="provider-trust" />
+          <label id="new-product-quality-label" for="new-product-quality">Quality of new product</label>
+          <input type="range" value="0.5" min="0.1" step="0.1" max="1" id="new-product-quality" />
+        </div>
+        <div class="centered vert">
+          <label id="prop-he-label" for="prop-he">Proportion Highly Experienced</label>
+          <input type="range" value="0.40" min="0" step="0.01" max="1" id="prop-he" />
+          <label id="prop-ea-label" for="prop-he">Proportion Early Adopters</label>
+          <input type="range" value="0.33" min="0" step="0.01" max="1" id="prop-ea" />
 
-    <br>
-    <label id="trial-length-label" for="trial-length">Trial Length</label>
-    <input type="range" value="1" min="1" step="1" max="3" id="trial-length" />
+          <div>
+            <input type="checkbox" id="high-sea-ice" />
+            <label for="high-sea-ice">Enable High Sea Ice Cover Years?</label>
+          </div>
 
-    <br /> <br />
-    <label id="min-year-label" for="min-year-view">Graph Begin Year</label>
-    <input type="range" value="2022" min="2022" step="1" max="2035" id="min-year-view" />
-    <label id="max-year-label" for="min-year-view">Graph End Year</label>
-    <input type="range" value="2035" min="2022" step="1" max="2035" id="max-year-view" />
+          <label for="realism">Model realism</label>
 
-    <br />
-    <label id="prop-ea-label" for="prop-he">Proportion Early Adopters</label>
-    <input type="range" value="0.33" min="0" step="0.01" max="1" id="prop-ea" />
+          <select name="Model Realism" id="realism">
+            <option value="realistic">Realistic</option>
+            <option value="conservative">Conservative</option>
+            <option value="optimistic">Optimistic</option>
+          </select>
+        </div>
+        <div class="centered vert">
+          <label id="min-year-label" for="min-year-view">Graph Begin Year</label>
+          <input type="range" value="2022" min="2022" step="1" max="2035" id="min-year-view" />
+          <label id="max-year-label" for="min-year-view">Graph End Year</label>
+          <input type="range" value="2035" min="2022" step="1" max="2035" id="max-year-view" />
 
-    <input type="checkbox" id="high-sea-ice" />
-    <label for="high-sea-ice">Enable High Sea Ice Cover Years?</label>
+          <button id="play">Play</button>
+          <button id="record">Run 30 Times and Record</button>
 
-    <label for="realism">Model realism</label>
-
-    <p id="simulation-number"></p>
-
-    <select name="Model Realism" id="realism">
-      <option value="realistic">Realistic</option>
-      <option value="conservative">Conservative</option>
-      <option value="optimistic">Optimistic</option>
-    </select>
-
-    <div>
-      <input type="checkbox" id="inc-prod" name="inc-product-utility">
-      <label for="inc-prod">Increasing Product Utility</label>
+          <p id="simulation-number"></p>
+        </div>
+      </div>
     </div>
-
-    <button id="play">Play</button>
-    <button id="record">Run 30 Times and Record</button>
 
     <script src="index.js"></script>
   </body>
