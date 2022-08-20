@@ -82,10 +82,6 @@
         <div class="centered vert">
           <label for="release-year" id="release-year-label">Release year</label>
           <input type="range" value="2022" min="2022" max="2035" id="release-year" />
-          <label id="speed-label" for="speed">Model Speed</label>
-          <input type="range" value="150" min="1" max="300" id="speed" />
-          <label id="informational-environment-reliability-label" for="informational-environment-reliability">Reliability of informational environment</label>
-          <input type="range" value="6" min="1" max="10" id="informational-environment-reliability" />
           <label id="provider-trust-label" for="provider-trust">Provider Trust</label>
           <input type="range" value="5" min="1" max="10" id="provider-trust" />
           <label id="new-product-quality-label" for="new-product-quality">Quality of new product</label>
@@ -96,6 +92,8 @@
           <input type="range" value="0.40" min="0" step="0.01" max="1" id="prop-he" />
           <label id="prop-ea-label" for="prop-he">Proportion Early Adopters</label>
           <input type="range" value="0.33" min="0" step="0.01" max="1" id="prop-ea" />
+          <label id="informational-environment-reliability-label" for="informational-environment-reliability">Reliability of informational environment</label>
+          <input type="range" value="6" min="1" max="10" id="informational-environment-reliability" />
 
           <div>
             <input type="checkbox" id="high-sea-ice" />
@@ -115,6 +113,8 @@
           <input type="range" value="2022" min="2022" step="1" max="2035" id="min-year-view" />
           <label id="max-year-label" for="min-year-view">Display route pattern map ending with this year</label>
           <input type="range" value="2035" min="2022" step="1" max="2035" id="max-year-view" />
+          <label id="speed-label" for="speed">Model Speed</label>
+          <input type="range" value="150" min="1" max="300" id="speed" />
 
           <button id="play">Play</button>
           <button id="record">Run 30 Times and Record</button>
