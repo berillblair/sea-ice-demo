@@ -68,10 +68,10 @@
                 <option value="weight_of_social_influence">Weight of social influence</option>
                 <option value="quality_threshold">Quality threshold</option>
                 <option value="experience_level">Experience level</option>
-                <option value="certainty">Certainty</option>
+                <option value="confidence">Confidence</option>
                 <option value="reliance_on_informational_environment">Reliance on informational environment</option>
                 <option value="utility threshold">Utility threshold</option>
-                <option value="kd">Knowledge of domain</option>
+                <option value="kd">Tacit knowledge</option>
               </select>
             </label>
             <label>
@@ -80,10 +80,10 @@
                 <option value="weight_of_social_influence">Weight of social influence</option>
                 <option value="quality_threshold">Quality threshold</option>
                 <option value="experience_level">Experience level</option>
-                <option value="certainty">Certainty</option>
+                <option value="confidence">Confidence</option>
                 <option value="reliance_on_informational_environment">Reliance on informational environment</option>
                 <option value="utility_threshold">Utility threshold</option>
-                <option value="kd">Knowledge of domain</option>
+                <option value="kd">Tacit knowledge</option>
               </select>
             </label>
             <label>
@@ -104,12 +104,12 @@
 
       <div class="vert">
         <div class="horiz">
-          <canvas id="certainty-graph" width="400px" height="400px"></canvas>
+          <canvas id="confidence-graph" width="400px" height="400px"></canvas>
           <canvas id="ship-count" width="400px" height="400px"></canvas>
           <canvas id="adopters" width="400px" height="400px"></canvas>
         </div>
         <div class="horiz">
-          <canvas id="average-kd" width="400px" height="400px"></canvas>
+          <canvas id="average-tk" width="400px" height="400px"></canvas>
           <canvas id="he-graph" width="400px" height="400px"></canvas>
           <canvas id="informational-environment-reliance" width="400px" height="400px"></canvas>
         </div>
@@ -150,7 +150,7 @@
           <button id="play-30">Run 30 Times</button>
           <button id="play-csv">Run + CSV</button>
           <button id="record-30">Run 30 Times + CSV</button>
-          <button id="record-decay">Decay simulation</button>
+          <button id="record-decay">Ramped up decay simulation (30 runs)</button>
 
           <p id="simulation-number"></p>
         </div>
