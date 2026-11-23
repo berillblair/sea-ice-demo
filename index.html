@@ -1,160 +1,64 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>My Rust + Webpack project!</title>
+<!doctype html><head><meta charset=UTF-8><title>My Rust + Webpack project!</title><style>@import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);*{font-family:Open Sans}.vert{flex-flow:column;display:flex}.horiz{flex-flow:row;display:flex}.centered{justify-content:center}.centered .horiz{width:100%}.centered .vert{height:100%}#buttons{justify-content:space-between;width:70vw}#buttons>*{width:26%}</style></head><body style=margin:0;display:inline-block>
+    <script src=https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js></script>
 
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-      * {
-        font-family: "Open Sans";
-      }
-
-      .vert {
-        display: flex;
-        flex-flow: column;
-      }
-
-      .horiz {
-        display: flex;
-        flex-flow: row;
-      }
-
-      #canvas {
-        width: 663px;
-        height: 517px;
-      }
-
-      #canvas-thing {
-        width: 770px;
-        border-right: solid 1px black;
-      }
-
-      .centered {
-        justify-content: center;
-      }
-
-      .centered .horiz {
-        width: 100%;
-      }
-
-      .centered .vert {
-        height: 100%;
-      }
-
-      #buttons {
-        justify-content: space-between;
-        width: 70vw;
-      }
-
-      #buttons > * {
-        width: 26%;
-      }
-    </style>
-  </head>
-  <body style="margin: 0; display: inline-block;">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
-<!--    <script src="https://cdn.jsdelivr.net/npm/regression@2.0.1/dist/regression.min.js "></script>-->
-
-    <div class="horiz">
-      <div class="vert centered" id="canvas-thing">
-        <div class="centered horiz"><canvas id="scatter" width="1326" height="1034"></canvas></div>
-        <div class="centered horiz">
-          <div class="vert">
-            <label>
-              X axis
-              <select id="x-axis">
-                <option value="quality_threshold">Quality threshold</option>
-                <option value="experience_level">Experience level</option>
-                <option value="confidence">Confidence</option>
-                <option value="reliance_on_informational_environment">Reliance on informational environment</option>
-                <option value="quality_threshold">Quality threshold</option>
-                <option value="tacit_knowledge">Tacit knowledge</option>
-              </select>
-            </label>
-            <label>
-              Y axis
-              <select id="y-axis">
-                <option value="quality_threshold">Quality threshold</option>
-                <option value="experience_level">Experience level</option>
-                <option value="confidence">Confidence</option>
-                <option value="reliance_on_informational_environment">Reliance on informational environment</option>
-                <option value="quality_threshold">Quality threshold</option>
-                <option value="tacit_knowledge">Tacit knowledge</option>
-              </select>
-            </label>
-            <label>
-              Regression
-              <select id="regression-type">
-                <option value="linear">Linear</option>
-                <option value="exponential">Exponential</option>
-                <option value="logarithmic">Logarithmic</option>
-                <option value="power">Power</option>
-                <option value="polynomial">Polynomial</option>
-              </select>
-            </label>
-            <button id="graph-regression">Graph</button>
-          </div>
+    <div class=horiz>
+      <div class=vert>
+        <div class=horiz>
+          <canvas id=transformation-graph width=400px height=400px></canvas>
+          <canvas id=ship-count width=400px height=400px></canvas>
+          <canvas id=adopters width=400px height=400px></canvas>
         </div>
-      </div>
-
-
-      <div class="vert">
-        <div class="horiz">
-          <canvas id="confidence-graph" width="400px" height="400px"></canvas>
-          <canvas id="ship-count" width="400px" height="400px"></canvas>
-          <canvas id="adopters" width="400px" height="400px"></canvas>
-        </div>
-        <div class="horiz">
-          <canvas id="average-tk" width="400px" height="400px"></canvas>
-          <canvas id="he-graph" width="400px" height="400px"></canvas>
-          <canvas id="informational-environment-reliance" width="400px" height="400px"></canvas>
+        <div class=horiz>
+          <canvas id=average-tk width=400px height=400px></canvas>
+          <canvas id=he-graph width=400px height=400px></canvas>
+          <canvas id=informational-environment-reliance width=400px height=400px></canvas>
         </div>
       </div>
     </div>
 
     <div class="horiz centered">
-      <div class="horiz" id="buttons">
+      <div class=horiz id=buttons>
         <div class="centered vert">
-          <label for="release-year" id="release-year-label">Release year</label>
-          <label for="release-year" id="release-year-val"></label>
-          <input type="range" value="2022" min="2022" max="2035" id="release-year" />
-          <label id="informational-environment-reliability-label" for="informational-environment-reliability">Informational environment quality</label>
-          <label id="informational-environment-reliability-val" for="informational-environment-reliability"></label>
-          <input type="range" value="0.5" min="0.05" max="1.0" step="0.05" id="informational-environment-reliability" />
-          <label id="new-product-quality-label" for="new-product-quality">Quality of new product</label>
-          <label id="new-product-quality-val" for="new-product-quality"></label>
-          <input type="range" value="0.5" min="0.05" step="0.05" max="1" id="new-product-quality" />
+          <label for=release-year id=release-year-label>Release year (for scenarios where a new forecast is not available, set to 2035)</label>
+          <label for=release-year id=release-year-val></label>
+          <input type=range value=2022 min=2022 max=2035 id=release-year>
+          <label id=quality-beke-label for=quality-beke>Quality of baseline explicit knowledge environment</label>
+          <label id=quality-beke-val for=quality-beke></label>
+          <input type=range value=0.5 min=0.05 max=1.0 step=0.05 id=quality-beke>
+          <label id=new-product-quality-label for=new-product-quality>Quality of additional forecast</label>
+          <label id=new-product-quality-val for=new-product-quality></label>
+          <input type=range value=0.5 min=0.05 step=0.05 max=1 id=new-product-quality>
         </div>
         <div class="centered vert">
-          <label id="frac-he-label" for="frac-he">Fraction Highly Experienced</label>
-          <label id="frac-he-val" for="frac-he"></label>
-          <input type="range" value="0.5" min="0" step="0.05" max="1" id="frac-he" />
-          <label id="decay-label" for="decay">Decay factor</label>
-          <label id="decay-val" for="decay"></label>
-          <input type="range" value="0.0" min="0.0" step="0.05" max="1" id="decay" />
+          <label id=frac-he-label for=frac-he>Fraction Highly Experienced</label>
+          <label id=frac-he-val for=frac-he></label>
+          <input type=range value=0.5 min=0 step=0.05 max=1 id=frac-he>
+          <label id=volatility-label for=volatility>Volatility</label>
+          <label id=volatility-val for=volatility></label>
+          <input type=range value=0.0 min=0.0 step=0.05 max=1 id=volatility>
 
-          <label style="display: none;" id="realism-val" for="realism">Growth Scenario</label>
+          <label style=display:none id=realism-val for=realism>Growth Scenario</label>
 
-          <select name="Model Realism" id="realism">
-            <option value="realistic">Realistic</option>
-            <option value="conservative">Conservative</option>
-            <option value="optimistic">Optimistic</option>
+          <select name="Model Realism" id=realism>
+            <option value=realistic>Realistic</option>
+            <option value=conservative>Conservative</option>
+            <option value=optimistic>Optimistic</option>
           </select>
         </div>
         <div class="centered vert">
-          <button id="play">Run</button>
-          <button id="play-30">Run 30 Times</button>
-          <button id="play-csv">Run + CSV</button>
-          <button id="record-30">Run 30 Times + CSV</button>
-          <button id="record-decay">Ramped up decay simulation (30 runs)</button>
+          <button id=play>Run</button>
+          <button id=play-30>Run 30 Times</button>
+          <button id=play-csv>Run + CSV</button>
+          <button id=record-30>Run 30 Times + CSV</button>
+          <button id=record-volatility>Ramped up volatility simulation (30 runs)</button>
 
-          <p id="simulation-number"></p>
+          <p id=simulation-number></p>
         </div>
       </div>
     </div>
 
-    <script src="index.js"></script>
-  </body>
-</html>
+    <script src=index.js></script>
+  
+
+</body></html>
